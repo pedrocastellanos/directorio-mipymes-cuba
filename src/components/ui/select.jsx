@@ -1,7 +1,6 @@
-import { forwardRef } from "react"
 import { cn } from "@/lib/utils"
 
-const Select = forwardRef(({ className, children, ...props }, ref) => {
+function Select({ className, children, ref, ...props }) {
   return (
     <select
       ref={ref}
@@ -14,7 +13,6 @@ const Select = forwardRef(({ className, children, ...props }, ref) => {
       {children}
     </select>
   )
-})
-Select.displayName = "Select"
+}
 
 export { Select }
