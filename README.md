@@ -12,7 +12,7 @@ Este proyecto es una aplicación web para explorar un directorio de MIPYMES en C
 
 Este directorio es **no oficial**.
 
-La información utilizada en este proyecto fue tomada de la página oficial del Ministerio de Finanzas y Precios de Cuba, en el documento:
+La información utilizada en este proyecto fue tomada de la página oficial del Ministerio de Economía y Planificación de Cuba, en el documento:
 
 - https://www.mep.gob.cu/sites/default/files/Documentos/Archivos/Listado%20de%20Nuevos%20Actores%20Econ%C3%B3micos%20aprobados%20hasta%2009.05.24%20.pdf
 
