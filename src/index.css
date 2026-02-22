@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 28% 4%;
+    --foreground: 220 22% 95%;
+    --card: 220 24% 8%;
+    --card-foreground: 220 30% 94%;
+    --primary: 199 100% 63%;
+    --primary-foreground: 220 30% 4%;
+    --secondary: 220 26% 14%;
+    --secondary-foreground: 220 30% 94%;
+    --muted: 220 24% 12%;
+    --muted-foreground: 220 20% 68%;
+    --accent: 199 100% 63%;
+    --accent-foreground: 220 30% 4%;
+    --border: 220 22% 19%;
+    --input: 220 24% 10%;
+    --ring: 199 100% 63%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-image:
+      radial-gradient(circle at 8% 10%, rgba(66, 192, 255, 0.16), transparent 34%),
+      radial-gradient(circle at 90% 16%, rgba(71, 110, 255, 0.18), transparent 36%),
+      radial-gradient(circle at 55% 96%, rgba(66, 192, 255, 0.11), transparent 40%),
+      linear-gradient(180deg, rgb(4 6 11), rgb(6 8 14));
+    background-attachment: fixed;
+    animation: body-pan 16s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes body-pan {
+  from {
+    background-position: 0% 0%, 100% 0%, 50% 100%, 0% 0%;
+  }
+
+  to {
+    background-position: 8% 6%, 92% 10%, 52% 90%, 0% 0%;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes draw-in {
+  from {
+    opacity: 0;
+    transform: scale(0.998);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes tooltip-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - 4px)) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, calc(-100% - 12px)) scale(1);
+  }
+}
+
+.animate-rise-in {
+  animation: rise-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-tooltip-in {
+  animation: tooltip-in 140ms ease-out both;
+}
+
+.map-surface {
+  background:
+    radial-gradient(circle at 20% 15%, rgba(66, 192, 255, 0.08), transparent 35%),
+    radial-gradient(circle at 78% 24%, rgba(75, 123, 255, 0.12), transparent 37%),
+    linear-gradient(180deg, rgba(12, 16, 27, 0.95), rgba(8, 11, 20, 0.98));
+}
+
+.map-entry {
+  animation: draw-in 420ms ease-out both;
+}
+
+.map-municipality {
+  transition: filter 0.2s ease, transform 0.2s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.map-municipality:hover {
+  filter: brightness(1.24) drop-shadow(0 0 5px rgba(66, 192, 255, 0.25));
+  transform: translateY(-0.2px);
+}
+
+.map-province-border {
+  filter: drop-shadow(0 0 2px rgba(173, 193, 255, 0.22));
+}
+
+.map-legend {
+  background: linear-gradient(90deg, hsl(220 35% 20%), hsl(199 95% 37%), hsl(199 95% 55%));
+}
