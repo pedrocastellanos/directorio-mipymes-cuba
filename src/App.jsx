@@ -1,25 +1,32 @@
-import { useState, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Building2 } from 'lucide-react'
 import { CubaMap } from './components/CubaMap'
 import { FiltersPanel } from './components/FiltersPanel'
 import { KpiBar } from './components/KpiBar'
 import { MipymesTable } from './components/MipymesTable'
 import { mipymes as allMipymes } from './data/mipymes'
-
-const DIRECTORY_LAST_UPDATE = '09/05/2024'
-
-function normalizeText(value) {
-  return value.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '').trim()
-}
+import { buildSearchFromFilters, normalizeText, readFiltersFromUrl } from './lib/utils'
+import { DIRECTORY_LAST_UPDATE } from './config'
 
 export default function App() {
-  const [filters, setFilters] = useState({
-    searchName: '',
-    filterProvince: '',
-    filterMunicipality: '',
-    filterType: '',
-    filterActivity: '',
-  })
+  const [filters, setFilters] = useState(() => readFiltersFromUrl())
+
+  useEffect(() => {
+    function handlePopState() {
+      setFilters(readFiltersFromUrl())
+    }
+
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
+
+  useEffect(() => {
+    const nextSearch = buildSearchFromFilters(filters)
+    if (window.location.search === nextSearch) return
+
+    const nextUrl = `${window.location.pathname}${nextSearch}${window.location.hash}`
+    window.history.replaceState(null, '', nextUrl)
+  }, [filters])
 
   const filtered = useMemo(() => {
     const { searchName, filterProvince, filterMunicipality, filterType, filterActivity } = filters
