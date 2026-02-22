@@ -7,6 +7,7 @@ import { MipymesTable } from './components/MipymesTable'
 import { mipymes as allMipymes } from './data/mipymes'
 import { buildSearchFromFilters, normalizeText, readFiltersFromUrl } from './lib/utils'
 import { DIRECTORY_LAST_UPDATE } from './config'
+import Footer from './components/Footer'
 
 export default function App() {
   const [filters, setFilters] = useState(() => readFiltersFromUrl())
@@ -74,6 +75,7 @@ export default function App() {
         />
         <FiltersPanel filters={filters} onFiltersChange={setFilters} />
         <MipymesTable filtered={filtered} />
+        <Footer />
       </div>
     </div>
   )
