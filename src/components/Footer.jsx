@@ -7,7 +7,7 @@ export default function Footer() {
                 <p className="flex items-center gap-1.5 text-sm text-muted-foreground">
                     <span>Made with</span>
                     <Heart className="h-4 w-4 fill-rose-500 text-rose-500" aria-hidden="true" />
-                    <span>por Pedro Castellanos Alonso</span>
+                    <span>by Pedro Castellanos Alonso</span>
                 </p>
 
                 <div className="flex items-center gap-3">
