@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Search, ChevronDown } from 'lucide-react'
 import { Card, CardContent } from './ui/card'
 import { Input } from './ui/input'
 import { Select } from './ui/select'
@@ -56,17 +57,21 @@ export function FiltersPanel({ filters, onFiltersChange }) {
       <CardContent className="pt-4 animate-rise-in [animation-delay:120ms]">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
           <div className="lg:col-span-1 flex flex-col gap-1.5">
-            <label className="text-xs text-muted-foreground">Denominación</label>
-            <Input
-              type="search"
-              placeholder="Buscar por nombre..."
-              value={searchName}
-              onChange={e => update('searchName', e.target.value)}
-            />
+            <label className="text-xs font-medium text-muted-foreground">Denominación</label>
+            <div className="relative">
+              <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                type="search"
+                placeholder="Buscar por nombre..."
+                value={searchName}
+                className="pl-8"
+                onChange={e => update('searchName', e.target.value)}
+              />
+            </div>
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs text-muted-foreground">Provincia</label>
+            <label className="text-xs font-medium text-muted-foreground">Provincia</label>
             <Select value={filterProvince} onChange={e => update('filterProvince', e.target.value)}>
               <option value="">Todas</option>
               {provinces.map(p => (
@@ -76,7 +81,7 @@ export function FiltersPanel({ filters, onFiltersChange }) {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs text-muted-foreground">Municipio</label>
+            <label className="text-xs font-medium text-muted-foreground">Municipio</label>
             <Select value={filterMunicipality} onChange={e => update('filterMunicipality', e.target.value)}>
               <option value="">Todos</option>
               {uniqueMunicipalities.map(m => (
@@ -86,7 +91,7 @@ export function FiltersPanel({ filters, onFiltersChange }) {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs text-muted-foreground">Tipo de sujeto</label>
+            <label className="text-xs font-medium text-muted-foreground">Tipo de sujeto</label>
             <Select value={filterType} onChange={e => update('filterType', e.target.value)}>
               <option value="">Todos</option>
               {typesCatalog.map(t => (
@@ -96,7 +101,7 @@ export function FiltersPanel({ filters, onFiltersChange }) {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs text-muted-foreground">Actividad principal</label>
+            <label className="text-xs font-medium text-muted-foreground">Actividad principal</label>
             <div className="relative" ref={activityDropdownRef}>
               <button
                 type="button"
@@ -104,11 +109,11 @@ export function FiltersPanel({ filters, onFiltersChange }) {
                 onClick={() => setActivityOpen(open => !open)}
               >
                 <span className="truncate">{filterActivity || 'Todas'}</span>
-                <span className="ml-2 text-xs text-muted-foreground">▾</span>
+                <ChevronDown className={`ml-2 h-3.5 w-3.5 shrink-0 text-muted-foreground transition-transform duration-150 ${activityOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {activityOpen && (
-                <div className="absolute z-40 mt-1 w-full rounded-lg border border-border bg-card p-2 shadow-lg">
+                <div className="absolute z-40 mt-1 w-full rounded-lg border border-border bg-card p-2 shadow-xl">
                   <Input
                     type="search"
                     placeholder="Buscar actividad..."
@@ -119,7 +124,7 @@ export function FiltersPanel({ filters, onFiltersChange }) {
                   <div className="mt-2 max-h-56 overflow-auto rounded-md border border-border/60">
                     <button
                       type="button"
-                      className="w-full border-b border-border/60 px-3 py-2 text-left text-sm hover:bg-secondary/40"
+                      className="w-full border-b border-border/60 px-3 py-2 text-left text-sm transition-colors hover:bg-secondary/40"
                       onClick={() => {
                         update('filterActivity', '')
                         setActivityOpen(false)
@@ -134,7 +139,7 @@ export function FiltersPanel({ filters, onFiltersChange }) {
                         <button
                           key={a}
                           type="button"
-                          className="w-full px-3 py-2 text-left text-sm hover:bg-secondary/40"
+                          className="w-full px-3 py-2 text-left text-sm transition-colors hover:bg-secondary/40"
                           onClick={() => {
                             update('filterActivity', a)
                             setActivityOpen(false)
