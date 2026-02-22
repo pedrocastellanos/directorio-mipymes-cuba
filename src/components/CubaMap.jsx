@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { MapPin, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react'
 import municipalitiesGeoJsonRaw from '../maps/cuba-municipalities.geojson?raw'
 import provincesGeoJsonRaw from '../maps/cuba-provinces.geojson?raw'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
@@ -222,30 +223,34 @@ export function CubaMap({ filtered, onMunicipalitySelect, selectedMunicipality, 
   return (
     <Card className="w-full animate-rise-in">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base sm:text-lg">Mapa de Cuba por provincias y municipios</CardTitle>
+        <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+          <MapPin className="h-4 w-4 text-primary" />
+          Mapa de Cuba por provincias y municipios
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="relative">
-          <div className="absolute right-3 top-3 z-20 flex items-center gap-1.5 rounded-md border border-border bg-card/90 p-1 backdrop-blur-sm">
+          <div className="absolute right-3 top-3 z-20 flex items-center gap-1 rounded-lg border border-border bg-card/90 p-1 backdrop-blur-sm shadow-sm">
             <button
               type="button"
               aria-label="Alejar"
-              className="h-7 w-7 rounded border border-border text-sm text-foreground hover:bg-accent"
+              className="flex h-7 w-7 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:bg-secondary/60 hover:text-foreground"
               onClick={zoomOut}
             >
-              −
+              <ZoomOut className="h-3.5 w-3.5" />
             </button>
             <button
               type="button"
               aria-label="Acercar"
-              className="h-7 w-7 rounded border border-border text-sm text-foreground hover:bg-accent"
+              className="flex h-7 w-7 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:bg-secondary/60 hover:text-foreground"
               onClick={zoomIn}
             >
-              +
+              <ZoomIn className="h-3.5 w-3.5" />
             </button>
             <button
               type="button"
-              className="h-7 rounded border border-border px-2 text-[11px] text-foreground hover:bg-accent"
+              aria-label="Restablecer zoom"
+              className="flex h-7 items-center justify-center rounded-md border border-border px-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-secondary/60 hover:text-foreground"
               onClick={resetZoom}
             >
               100%
@@ -349,10 +354,10 @@ export function CubaMap({ filtered, onMunicipalitySelect, selectedMunicipality, 
           )}
         </div>
 
-        <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
-          <span>Menor densidad</span>
-          <div className="h-2.5 flex-1 rounded-full map-legend" />
-          <span>Mayor densidad</span>
+        <div className="mt-3 flex items-center gap-2.5 text-xs text-muted-foreground">
+          <span className="shrink-0">Menor densidad</span>
+          <div className="h-2 flex-1 rounded-full map-legend opacity-90" />
+          <span className="shrink-0">Mayor densidad</span>
         </div>
       </CardContent>
     </Card>
