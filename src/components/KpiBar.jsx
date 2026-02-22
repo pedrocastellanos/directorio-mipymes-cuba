@@ -4,7 +4,10 @@ import { Card } from './ui/card'
 export function KpiBar({ filtered }) {
   const privateCount = filtered.filter(item => item.tipo?.toLowerCase().includes('privad')).length
   const stateCount = filtered.filter(item => item.tipo?.toLowerCase().includes('estatal')).length
-  const activeMunicipalities = new Set(filtered.map(item => item.municipio)).size
+  const activeMunicipalities = new Set(
+    filtered.map(item => item.municipio)
+      .filter(municipio => municipio?.trim())
+  ).size
 
   const kpis = [
     {
@@ -21,7 +24,7 @@ export function KpiBar({ filtered }) {
     },
     {
       label: 'Municipios con registros',
-      value: activeMunicipalities,
+      value: activeMunicipalities.toLocaleString('es-CU'),
       icon: MapPin,
       iconClass: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20',
     },
