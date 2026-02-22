@@ -77,7 +77,7 @@ export function FiltersPanel({ filters, onFiltersChange }) {
   }
 
   return (
-    <Card>
+    <Card className="relative z-10">
       <CardContent className="pt-4 animate-rise-in [animation-delay:120ms]">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
           <div className="lg:col-span-1 flex flex-col gap-1.5">
