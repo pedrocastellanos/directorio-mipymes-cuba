@@ -51,7 +51,7 @@ export default function App() {
               <Building2 className="h-5 w-5 text-primary" />
             </div>
             <div className="min-w-0">
-              <h1 className="text-lg font-bold tracking-tight text-foreground sm:text-xl">Directorio Nacional de MIPYMES</h1>
+              <h1 className="text-lg font-bold tracking-tight text-foreground sm:text-xl">Directorio de MIPYMES (no oficial)</h1>
               <p className="mt-0.5 text-xs text-muted-foreground">República de Cuba &nbsp;·&nbsp; Última actualización: {DIRECTORY_LAST_UPDATE}</p>
             </div>
           </div>
