@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import { CubaMap } from './components/CubaMap'
 import { FiltersPanel } from './components/FiltersPanel'
 import { KpiBar } from './components/KpiBar'
