@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Building2 } from 'lucide-react'
+import { Analytics } from '@vercel/analytics/react'
 import { CubaMap } from './components/CubaMap'
 import { FiltersPanel } from './components/FiltersPanel'
 import { KpiBar } from './components/KpiBar'
@@ -77,6 +78,7 @@ export default function App() {
         <MipymesTable filtered={filtered} />
         <Footer />
       </div>
+      <Analytics />
     </div>
   )
 }
